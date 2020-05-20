@@ -2,7 +2,9 @@ import { mocklify, modify, omit, override, where, Limiter } from 'mocklify';
 
 enum House {
   GRYFFINDOR = 'Gryffindor',
-  SLYTHERIN = 'Slytherin'
+  SLYTHERIN = 'Slytherin',
+  RAVENCLAW = 'Ravenclaw',
+  HUFFLEPUFF = 'Hufflepuff'
 }
 
 const isGryffindor: Limiter<IStudent> = student => student.house === House.GRYFFINDOR;
@@ -53,7 +55,7 @@ export interface IStudent {
   gender: string;
 }
 
-export const MOCK_GRYFFINDOR_STUDENTS: IStudent[] = [
+export const MOCK_MIXED_HOUSE_STUDENTS: IStudent[] = [
   {
     id: "harry_potter",
     firstName: "Harry",
@@ -71,6 +73,15 @@ export const MOCK_GRYFFINDOR_STUDENTS: IStudent[] = [
     points: 64,
     tags: [],
     gender: 'male'
+  },
+  {
+    id: "luna_lovegood",
+    firstName: "Luna",
+    lastName: "Lovegood",
+    house: House.RAVENCLAW,
+    points: 256,
+    tags: [],
+    gender: 'female'
   }
 ];
 
@@ -96,7 +107,8 @@ export const MOCK_SLYTHERIN_STUDENTS: IStudent[] = [
 ];
 
 const students = mocklify<IStudent>()
-    .addAll(MOCK_GRYFFINDOR_STUDENTS)
+    .addAll(MOCK_MIXED_HOUSE_STUDENTS)
+    .filter(isGryffindor)
     .add(1, MOCK_SLYTHERIN_STUDENTS)
     .generate(7, MOCK_STUDENT_FACTORY)
     .transform(
