@@ -1,0 +1,8 @@
+{
+  "name": "simple-mocklify-demo",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "mocklify": "^1.0.0"
+  }
+}
