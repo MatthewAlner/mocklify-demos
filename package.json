@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "faker": "^4.1.0",
-    "mocklify": "^1.0.0"
-  }
-}
