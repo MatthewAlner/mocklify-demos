@@ -53,7 +53,7 @@ export interface IStudent {
   gender: string;
 }
 
-export const MOCK_STUDENTS: IStudent[] = [
+export const MOCK_GRYFFINDOR_STUDENTS: IStudent[] = [
   {
     id: "harry_potter",
     firstName: "Harry",
@@ -71,7 +71,10 @@ export const MOCK_STUDENTS: IStudent[] = [
     points: 64,
     tags: [],
     gender: 'male'
-  },
+  }
+];
+
+export const MOCK_SLYTHERIN_STUDENTS: IStudent[] = [
   {
     id: "draco_malfoy",
     firstName: "Draco",
@@ -80,11 +83,21 @@ export const MOCK_STUDENTS: IStudent[] = [
     points: 128,
     tags: [],
     gender: 'male'
+  },
+  {
+    id: "vincent_crabbe",
+    firstName: "Vincent",
+    lastName: "Crabbe",
+    house: House.SLYTHERIN,
+    points: 1,
+    tags: [],
+    gender: 'male'
   }
 ];
 
 const students = mocklify<IStudent>()
-    .addAll(MOCK_STUDENTS)
+    .addAll(MOCK_GRYFFINDOR_STUDENTS)
+    .add(1, MOCK_SLYTHERIN_STUDENTS)
     .generate(7, MOCK_STUDENT_FACTORY)
     .transform(
         omit(['gender']),
